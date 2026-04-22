@@ -1,13 +1,19 @@
 <template>
-  <div>
-    <h1>Hello World from Frontend!</h1>
+  <div class="min-h-screen bg-gray-100">
+    
+    <nav class="bg-white shadow mb-4">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <span class="text-xl font-bold text-blue-600">MediCitas Pro</span>
+      </div>
+    </nav>
+
+    <router-view />
+    
   </div>
 </template>
 
 <script setup lang="ts">
-// No script needed for a simple hello world
 </script>
 
-<style scoped>
-/* No styles needed for a simple hello world */
+<style>
 </style>

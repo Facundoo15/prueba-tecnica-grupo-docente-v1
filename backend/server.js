@@ -1,11 +1,21 @@
-const express = require("express");
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const appointmentRoutes = require('./src/routes/AppointmentRoutes');
+const PORT = process.env.PORT || 3000;
+
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-	res.send("Hello World from Backend!");
-});
+app.use(cors());
+app.use(express.json());
 
-app.listen(port, () => {
-	console.log(`Backend server listening at http://localhost:${port}`);
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/gestion_citas')
+	.then(() => console.log('MongoDB conectado exitosamente'))
+	.catch(err => console.error('Error conectando a MongoDB:', err));
+
+app.use('/api/appointments', appointmentRoutes);
+
+
+app.listen(PORT, () => {
+	console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
